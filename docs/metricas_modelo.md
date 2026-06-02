@@ -1,19 +1,15 @@
-# Métricas del modelo de churn
+# Métricas de modelos de churn
 
-## Resultados principales
+## Comparación de modelos
 
-| Métrica | Valor |
-|---|---:|
-| Accuracy | 1.0000 |
-| Precision | 1.0000 |
-| Recall | 1.0000 |
-| F1-score | 1.0000 |
+| Modelo | Accuracy | Precision | Recall | F1-score |
+|---|---:|---:|---:|---:|
+| Regresión Logística | 1.0000 | 1.0000 | 1.0000 | 1.0000 |
+| Gradient Boosting | 1.0000 | 1.0000 | 1.0000 | 1.0000 |
 
-## Interpretación inicial
+## Interpretación
 
-Estas métricas permiten evaluar el desempeño inicial del modelo de clasificación.
-
-- Accuracy indica el porcentaje general de aciertos.
-- Precision indica qué tan confiables son las predicciones positivas.
-- Recall indica qué proporción de clientes con churn fueron identificados.
-- F1-score resume precision y recall en una sola métrica.
+- **Accuracy**: porcentaje general de aciertos.
+- **Precision**: qué tan confiables son las predicciones positivas.
+- **Recall**: qué proporción de clientes con churn fueron identificados.
+- **F1-score**: resumen de precision y recall en una sola métrica.
