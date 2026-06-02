@@ -8,11 +8,26 @@ def test_inicio():
     response = client.get("/")
 
     assert response.status_code == 200
-    assert "mensaje" in response.json()
+    data = response.json()
+    assert "mensaje" in data
+    assert "modelos_disponibles" in data
 
 def test_health():
     response = client.get("/health")
 
     assert response.status_code == 200
-    assert "estado" in response.json()
-    assert "modelo_disponible" in response.json()
+    data = response.json()
+    assert "estado" in data
+    assert "modelos" in data
+
+def test_predict_modelo_invalido():
+    response = client.post("/predict?modelo=xgboost", json={
+        "edad": 30,
+        "antiguedad_meses": 12,
+        "saldo_promedio": 2500.0,
+        "reclamos": 1,
+        "usa_app": 1,
+    })
+
+    assert response.status_code == 400
+    assert "no válido" in response.json()["detail"]
