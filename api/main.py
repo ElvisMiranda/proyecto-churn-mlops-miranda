@@ -38,7 +38,9 @@ def cargar_modelo(algoritmo: str):
 @app.get("/")
 def inicio():
     return {
-        "mensaje": "API de predicción de churn activa",
+        "mensaje": "Servicio ML-Ops activo",
+        "estado": "ok",
+        "author": "Elvis Miranda Aramayo",
         "modelos_disponibles": list(NOMBRES_MODELOS.keys()),
     }
 
