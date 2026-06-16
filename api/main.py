@@ -79,7 +79,7 @@ LOG_FILE = LOGS_DIR / "monitor_api.log"
 VERSION_MODELO = "modelo_churn_v1"
 
 # Personalizar obligatoriamente con nombre y apellido.
-AUTOR = "Nombre y apellido del participante"
+AUTOR = "Elvis Miranda Aramayo"
 
 # ============================================================
 # BLOQUE 3. RANGOS HISTÓRICOS DE REFERENCIA
@@ -456,7 +456,29 @@ def health() -> dict[str, str]:
     }
 
 # ============================================================
-# BLOQUE 15. ENDPOINT GET /metrics
+# BLOQUE 15. ENDPOINT GET /info
+# ============================================================
+# AQUÍ SE IMPLEMENTA:
+# - endpoint GET /info que devuelve metadatos del modelo.
+#
+# Puede abrirse desde:
+# http://127.0.0.1:8000/info
+
+@app.get("/info")
+def info() -> dict:
+    """
+    Devuelve información general del modelo desplegado:
+    versión, autor y variables utilizadas.
+    """
+
+    return {
+        "version_modelo": VERSION_MODELO,
+        "autor": AUTOR,
+        "variables_utilizadas": list(RANGOS_HISTORICOS.keys()),
+    }
+
+# ============================================================
+# BLOQUE 16. ENDPOINT GET /metrics
 # ============================================================
 # AQUÍ SE IMPLEMENTA:
 # - endpoint GET /metrics para consultar el resumen acumulado.
@@ -473,7 +495,7 @@ def metrics() -> dict:
     return resumen_metricas()
 
 # ============================================================
-# BLOQUE 16. ENDPOINT POST /predict
+# BLOQUE 17. ENDPOINT POST /predict
 # ============================================================
 # AQUÍ SE IMPLEMENTA:
 # - predicción del modelo;
