@@ -20,6 +20,17 @@ def test_health():
     assert "estado" in data
     assert "modelos" in data
 
+def test_info():
+    response = client.get("/info")
+
+    assert response.status_code == 200
+    data = response.json()
+    assert data["version_modelo"] == "modelo_churn_v1"
+    assert "autor" in data
+    assert "variables_utilizadas" in data
+    assert isinstance(data["variables_utilizadas"], list)
+    assert len(data["variables_utilizadas"]) > 0
+
 def test_predict_modelo_invalido():
     response = client.post("/predict?modelo=xgboost", json={
         "edad": 30,
