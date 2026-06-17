@@ -72,9 +72,6 @@ MODEL_PATH = PROJECT_ROOT / "models" / "modelo_churn_v1.joblib"
 # Carpeta donde se almacenará el archivo de logs.
 LOGS_DIR = PROJECT_ROOT / "logs"
 
-# Ruta completa del archivo que registrará los eventos.
-LOG_FILE = LOGS_DIR / "monitor_api.log"
-
 # Información que se mostrará en las respuestas de la API.
 VERSION_MODELO = "modelo_churn_v1"
 
@@ -107,8 +104,15 @@ RANGOS_HISTORICOS = {
 # - logging en consola.
 #
 # La carpeta logs/ se crea automáticamente si todavía no existe.
+# Si no tiene permisos, usa /tmp como alternativa.
 
-LOGS_DIR.mkdir(exist_ok=True)
+try:
+    LOGS_DIR.mkdir(exist_ok=True)
+except PermissionError:
+    LOGS_DIR = Path("/tmp/logs")
+    LOGS_DIR.mkdir(exist_ok=True)
+
+LOG_FILE = LOGS_DIR / "monitor_api.log"
 
 logging.basicConfig(
     level=logging.INFO,
