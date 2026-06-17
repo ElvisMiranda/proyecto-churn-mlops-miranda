@@ -1,8 +1,4 @@
-fastapi[standard] 
-numpy
-pandas
-scikit-learn
-joblib
-pytest
-httpx
-requests
+fastapi[standard]>=0.110.0,<1
+numpy>=1.24,<2
+scikit-learn==1.7.1
+joblib>=1.3,<2
